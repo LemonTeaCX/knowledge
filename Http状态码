@@ -1,0 +1,24 @@
+							# Http状态码
+1xx：信息状态码
+100 Continue 继续，一般在发送post请求时，已发送了http header之后服务端将返回此信息，表示确认，之后发送具体参数信息；
+
+2xx：成功状态码
+200 OK 正常返回信息
+201 Create 请求成功并且服务器创建了新的资源
+202 Accepted 服务器已接受请求，但尚未处理
+
+3xx：重定向
+301 Moved Permanently 请求的网页已永久移动到新位置。
+302 Found 临时性重定向。
+303 SeeOther 临时性重定向，且总是使用GET请求新的URI。
+304 Not Modified 自从上次请求后，请求的网页未修改过。
+
+4xx：客户端错误
+400 Bad Request 服务器无法理解请求的格式，客户端不应当尝试再次使用相同的内容发起请求。
+401 Unauthorized 请求未授权。
+403 Forbidden 禁止访问。
+404 Not Found 找不到如何与URI相匹配的资源。
+
+5xx：服务器错误
+500 Internal Server Error 最常见的服务器端错误。
+503 Service Unavailable 服务器端暂时无法处理请求（可能是过载或维护）。
