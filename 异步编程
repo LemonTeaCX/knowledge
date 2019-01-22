@@ -1,0 +1,52 @@
+										# 异步编程
+	Javascript语言的执行环境是"单线程"（single thread）。"同步模式"就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；"异步模式"则完全 不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结 束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。以下是几种"异步模式"编程的方法
+### 回调函数
+	现在有两个函数fn1、fn2，fn2依赖fn1执行后的结果，我们可以把fn2当做fn1的回调函数。
+	```
+	let fn1 = function(callback) {
+		setTimeout(() => {
+			callback && callback();
+		}, 1000);
+	}
+	fn1(fn2);
+	```
+	优点：- 简单、容易理解。
+	缺点：- 在异步有多级依赖下回层层嵌套，形成回调地狱，代码难以阅读及维护
+
+### 事件监听
+	事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。
+	```
+	f1.on('done', f2);
+
+	```
+	这里表示当f1发生‘done’事件后，会执行f2事件
+
+### 发布/订阅
+	我们假定，存在一个"信号中心"，某个任务执行完成，就向信号中心"发布"（publish）一个信号，其他任务可以向信号中心"订阅"（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做"发布/订阅模式"（publish-subscribe pattern），又称"观察者模式"（observer pattern）。
+
+	```
+	// 以下是伪代码
+
+	let observer = new Observer(); // 创建一个观察者（信号中心）
+	observer.subscribe(f2, "done"); // f2向信号中心订阅done信号
+
+	function f1(){
+　　　　setTimeout(function () {
+　　　　　　observer.publish("done"); // 向信号中心发布done信号，f2收到信号开始执行
+　　　　}, 1000);
+　　}
+	```
+### Promises
+	它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。
+	```
+	let promise = new Promise((resolve, reject) => {
+		setTimeout(() => {
+			console.log(123);
+			resolve('done');
+		}, 2000);
+	});
+
+	promise.then((res) => {
+		console.log(res);
+	});
+	```
