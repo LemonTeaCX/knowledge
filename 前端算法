@@ -1,0 +1,125 @@
+# 前端算法
+1、获取浏览器URL中查询字符串参数
+function getUrlQuery(url = '') {
+	let obj = {};
+	let args = url.split('?');
+
+	if (args[0] === url || !args[1]) return obj;
+
+	let arr = args[1].split('&');
+
+	for (let i = arr.length - 1; i >= 0; i--) {
+		let arg = arr[i].split('=');
+		obj[arg[0]] = arg[1];
+	}
+
+	return obj;
+}
+
+2、深度克隆
+function deepCopy(fromObj, toObj) {
+	for (let key in fromObj) {
+		let value = fromObj[key];
+		if (value instanceof Object) {
+			// 这里使用new value.constructor的方式创建一个空对象，可以省去判断value的值为Object或Array
+			let tempObj = new value.constructor;
+			deepCopy(value, tempObj);
+			toObj[key] = tempObj;
+		} else {
+			toObj[key] = value;
+		};
+	}
+}
+
+3、判断一个对象是否为数组
+function isArray(obj) {
+	if (typeof obj === 'Object') {
+		return Object.prototype.toString.call(obj) === '[object Array]';
+	}
+	return false;
+}
+
+4、邮箱格式正则验证
+let reg = /^\w+(\.\w+)*@\w+((\.\w{2,3}){1,3})$/
+
+5、正则清除字符串前后空格
+function trim(str) {
+	if (!str || typeof str !== 'string') return;
+	return str.replace(/(^\s*)|(\s*$)/, '');
+}
+
+6、快速排序
+/*
+	采用二分法，取出中间数，数组每次和中间数比较，小的放到左边，大的放到右边；
+ */
+function quickSort(arr = []) {
+	if (arr.length == 0) return [];
+
+	let cIndex = Math.floor(arr.length / 2);
+
+	let c = arr.splice(cIndex, 1);
+	let l = [];
+	let r = [];
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] < c) {
+			l.push(arr[i]);
+		} else {
+			r.push(arr[i]);
+		}
+	}
+	return quickSort(l).concat(c, quickSort(r));
+}
+
+7、冒泡排序
+/*
+	每次比较相邻的两个数，如果后一个比前一个小，换位置
+ */
+function bubbleSort(arr = []) {
+	for (let i = 0; i < arr.length - 1; i++) {
+		for (let j = 0; j < arr.length - 1 - i; j++) {
+			if (arr[j] > arr[j + 1]) {
+				let temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
+	return arr;
+}
+
+8、数组去重
+Array.prototype.unique1 = function() {
+	let arr = this,
+			temp = [];
+
+	for (let i = 0; i < arr.length; i++)
+		if (temp.indexOf(arr[i]) === -1)
+			temp.push(arr[i]);
+
+	return temp;
+}
+
+Array.prototype.unique2 = function() {
+	let arr = this,
+			temp = [],
+			obj = {};
+
+	for (let i = 0; i < arr.length; i++) {
+		if (!obj[arr[i]]) {
+			obj[arr[i]] = true;
+			temp.push(arr[i]);
+		}
+	}
+
+	return temp;
+}
+
+Array.prototype.unique3 = function() {
+	return [...new Set(this)];
+}
+
+9.获取一个变量的数据类型
+let getParmType = (parm) => {
+	let typeStr = Object.prototype.toString.call(parm);
+	return typeStr.replace(/^\[object |\]$/g, '');
+}
