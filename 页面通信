@@ -9,4 +9,4 @@
 	我们可以在一个页面里面使用ifarme标签嵌入其他页面，这样可以实现父子页面之间的通信（可能存在跨域问题）。
 
 4.通过postMessage；
-	页面A向页面B发送信息poseMessage，页面B监听message事件获取页面A的信息
+	页面A向页面B发送信息poseMessage，页面B监听message事件获取页面A的信息。
