@@ -1,258 +1,354 @@
-# ES6/7/8
-	ECMAScript是JavaScript语言的标准，JavaScript是ECMAScript的一种实现。以下是ECMAScript6/7/8的相关内容。
+# ES6、7、8
+###### ECMAScript是JavaScript语言的标准，JavaScript是ECMAScript的一种实现。以下是ECMAScript6/7/8的相关内容。
 	
-1、let和const
+### 1、let和const
 	ES6新增了let和const用来声明变量，它们解决了之前使用var声明的一些弊端。
-1.1、块级作用域
-	如果使用var来声明变量，则作用域在函数内或者闭包；如果使用let、const，除了在函数内/闭包外，还拥有块级作用域（一个大括号{}内）。例如:
-	{let name = "lemon"};
-1.2、const声明常量
-	const用于声明常量，声明过后不可重复赋值，引用类型除外。例如：
-	const PI = 3.14；
-	PI = 20; // Invalid or unexpected token
-	const obj = {'name': 'lemon' };
-	obj.name = 'mt'; // obj = {'name': 'mt' };
-1.3、let/const不存在变量提升，不可重复声明
-	console.log(name);
-	let name = 'lemon'; // name is not defined(不存在变量提升)
-	let age = 20;
-	let age = 18; // Identifier 'age' has already been declared(不可重复声明变量)
+##### 1.1、块级作用域
+如果使用var来声明变量，则作用域在函数内或者闭包；如果使用let、const，除了在函数内/闭包外，还拥有块级作用域（一个大括号{}内）。例如:
 	
-2、解构赋值
+```
+{let name = "lemon"};
+```
+
+##### 1.2、const声明常量
+const用于声明常量，声明过后不可重复赋值，引用类型除外。例如：
+
+```
+const PI = 3.14；
+PI = 20; // Invalid or unexpected token
+const obj = {'name': 'lemon' };
+obj.name = 'mt'; // obj = {'name': 'mt' };
+```
+
+##### 1.3、let/const不存在变量提升，不可重复声明
+
+```
+console.log(name);
+let name = 'lemon'; // name is not defined(不存在变量提升)
+let age = 20;
+let age = 18; // Identifier 'age' has already been declared(不可重复声明变量)
+```
+
+### 2、解构赋值
 	用于分解js中对象的结构，自动解析数组或对象中的值。
-2.1、数组解构
-	let [ name1, name2, name3, name4 ] = [ 'lemon1', 'lemon2', , 'lemon4' ];
+##### 2.1、数组解构
+```
+let [ name1, name2, name3, name4 ] = [ 'lemon1', 'lemon2', , 'lemon4' ];
 	console.log(name1, name2, name3, name4); // lemon1 lemon2 undefined lemon4
-2.3、对象解构
-  let {name, age, sex } = {
+```
+##### 2.3、对象解构
+```
+let {name, age, sex } = {
     name: 'lemon',
     age: 20,
     sex: '男' 
-  };
-  console.log(name, age, sex); // 'lemon' 20 '男'
-  
-  解构重命名：
-  let {name: myName, age: myAge, sex: mySex } = {
+};
+console.log(name, age, sex); // 'lemon' 20 '男'
+
+// 解构重命名：
+let {name: myName, age: myAge, sex: mySex } = {
     name: 'lemon',
     age: 20,
     sex: '男' 
-  };
-  console.log(myName, myAge, mySex); // 'lemon' 20 '男'
+};
+console.log(myName, myAge, mySex); // 'lemon' 20 '男'
+```
 
-3、延展操作符
-3.1、延展数组
-  let arr1 = [ 1, 2, 3 ];
-  let arr2 = [ 'a', 'b', 'c' ];
-  let arr3 = [ ..arr1, ...arr2 ];
-  console.log(arr3); // [ 1, 2, 3, 'a', 'b', 'c' ]
-3.2、延展对象
-  let obj1 = {'name': 'lemon', 'age': 20 };
-  let obj2 = {'name': 'mt', 'age': 18, 'sex': 'nv' };
-  let obj3 = {...obj1, ...obj2 };
-  console.log(obj3); // {name: "mt", age: 18, sex: "nv"} (属性一致时会被覆盖)
+### 3、延展操作符
+##### 3.1、延展数组
+```
+let arr1 = [ 1, 2, 3 ];
+let arr2 = [ 'a', 'b', 'c' ];
+let arr3 = [ ..arr1, ...arr2 ];
+console.log(arr3); // [ 1, 2, 3, 'a', 'b', 'c' ]
+```
+##### 3.2、延展对象
+```
+let obj1 = {'name': 'lemon', 'age': 20 };
+let obj2 = {'name': 'mt', 'age': 18, 'sex': 'nv' };
+let obj3 = {...obj1, ...obj2 };
+console.log(obj3); // {name: "mt", age: 18, sex: "nv"} (属性一致时会被覆盖)
+```
   
-4、模板字符串
-  模板字符串使用反引号'`'来包含字符串，变量使用${}包含，里面可使用表达式。
-  let name = 'lemon';
-  let sentence = `my name is ${name ? name : 'mt'}`;
-  console.log(sentence); // my name is lemon
+### 4、模板字符串
+    模板字符串使用反引号'`'来包含字符串，变量使用${}包含，里面可使用表达式。
 
-5、箭头函数
-  箭头函数可以看做是匿名函数的简写方式，形式如: ( inputs ) => {output }
-  “=>”左边为参数，当只有一个参数时可以省略小括号();
-  “=>”右边为函数体，当只有一句返回值的时候可以省略大括号{}。
-  let fn = (name) => {
+```
+let name = 'lemon';
+let sentence = `my name is ${name ? name : 'mt'}`;
+console.log(sentence); // my name is lemon
+```
+
+
+### 5、箭头函数
+    箭头函数可以看做是匿名函数的简写方式，形式如: ( inputs ) => {output }
+    “=>”左边为参数，当只有一个参数时可以省略小括号();
+    “=>”右边为函数体，当只有一句返回值的时候可以省略大括号{}。
+  
+```
+let fn = (name) => {
     return `my name is ${name}`;
-  }
-  let sentence = fn('lemon');
-  console.log(sentence); // 'my name is lemon'
-5.1、箭头函数没有this
-  let obj = {
+}
+let sentence = fn('lemon');
+console.log(sentence); // 'my name is lemon'
+```
+
+##### 5.1、箭头函数没有this
+
+```
+let obj = {
     fn: function() {
-      setTimeout(function() {
-        console.log(this); // 指向window
-      }, 1000);
+        setTimeout(function() {
+            console.log(this); // 指向window
+        }, 1000);
       
-      setTimeout(() => {
-        console.log(this); // 指向obj
-      }, 1000);
+        setTimeout(() => {
+            console.log(this); // 指向obj
+        }, 1000);
     }
-  }
-箭头函数没有this，内部的this即是外部的this。
-5.2、箭头函数中没有arguments对象
-	let fn = (name, age) => {
-		console.log(arguments);
-	}
-	fn('lemon', 18); // arguments is not defined
+}
+// 箭头函数没有this，内部的this即是外部的this。
+```
+##### 5.2、箭头函数中没有arguments对象
+	
+```
+let fn = (name, age) => {
+	console.log(arguments);
+}
+fn('lemon', 18); // arguments is not defined
+```
 
-6、字符串操作
-6.1、startsWith()
-	判断字符串是否以XX开头
-	let sentence = 'my name is lemon';
-	console.log(sentence.startsWith('my')); // true
-6.2、endsWith()
-	判断字符串是否以XX结尾
-	let sentence = 'my name is lemon';
-	console.log(sentence.endsWith('lemon')); // true
-6.3、includes()
-  判断字符串是否包含XX
-  let sentence = 'my name is lemon';
-  console.log(sentence.includes('name')); // true
-6.4、repeat()
-  将字符串拷贝N份
-  let name = 'lemon';
-  console.log(name.repeat(3)); // lemonlemonlemon
-6.5、padStart()/padEnd()
-  padStart()用于字符串头部补全
-  padEnd()用于字符串尾部补全
-  第一个参数用来指定字符串补全以后的长度
-  第二个参数是用来补全的字符串
-  let name = 'lemon';
-  console.log(name.padStart(8, '1')); // 111lemon
-  console.log(name.padEnd(8, '1')); // lemon111
+### 6、字符串操作
+##### 6.1、startsWith()
 
-7、数组操作
-7.1、Array.from()
-  将一个数组或者类数组变成新数组，是浅拷贝操作。
-  let arr1 = [ 'lemon', 20, {'name': 'mt', age: 18 } ];
-  let arr2 = Array.from(arr1);
-  console.log(arr1 === arr2) // false
-7.2、Array.of()
-  创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。
-  Array.of(7); // [7] 
-  Array.of(1, 2, 3); // [1, 2, 3]
-7.3、Array.fill()
-  用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。(包含头不包含尾)
-  arr.fill(value[, start[, end]]); // value为替换后的值，start为开始索引，end为终止索引。
-  [1, 2, 3].fill(4);               // [4, 4, 4]
-  [1, 2, 3].fill(4, 1);            // [1, 4, 4]
-  [1, 2, 3].fill(4, 1, 2);         // [1, 4, 3]
-  [1, 2, 3].fill(4, 1, 1);         // [1, 2, 3]
-  [1, 2, 3].fill(4, 3, 3);         // [1, 2, 3]
-  [1, 2, 3].fill(4, -3, -2);       // [4, 2, 3]
-  [1, 2, 3].fill(4, NaN, NaN);     // [1, 2, 3]
-  [1, 2, 3].fill(4, 3, 5);         // [1, 2, 3]
+```
+// 判断字符串是否以XX开头
+let sentence = 'my name is lemon';
+console.log(sentence.startsWith('my')); // true
+```
 
+##### 6.2、endsWith()
 
-8、对象操作
-8.1、属性简写
-  如果对象中属性值和变量名相同，并且属性的值就是变量表示值，则简写。
-  let name = 'lemon';
-  let age = 20;
-  let obj = {name, age }; // 相当于 let obj = {'name': name, 'age': age };
-8.2、super
-  通过super可以调用prototype上的属性或方法。
-  let lemon = {'name': 'lemon' };
-  let mt = {
+```
+// 判断字符串是否以XX结尾
+let sentence = 'my name is lemon';
+console.log(sentence.endsWith('lemon')); // true
+```
+
+##### 6.3、includes()
+
+```
+判断字符串是否包含XX
+let sentence = 'my name is lemon';
+console.log(sentence.includes('name')); // true
+```
+
+##### 6.4、repeat()
+
+```
+将字符串拷贝N份
+let name = 'lemon';
+console.log(name.repeat(3)); // lemonlemonlemon
+```
+
+##### 6.5、padStart()/padEnd()
+
+```
+padStart()用于字符串头部补全
+padEnd()用于字符串尾部补全
+第一个参数用来指定字符串补全以后的长度
+第二个参数是用来补全的字符串
+let name = 'lemon';
+console.log(name.padStart(8, '1')); // 111lemon
+console.log(name.padEnd(8, '1')); // lemon111
+```
+
+### 7、数组操作
+##### 7.1、Array.from()
+
+```
+// 将一个数组或者类数组变成新数组，是浅拷贝操作。
+let arr1 = [ 'lemon', 20, {'name': 'mt', age: 18 } ];
+let arr2 = Array.from(arr1);
+console.log(arr1 === arr2) // false
+```
+
+##### 7.2、Array.of()
+
+```
+// 创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型。
+Array.of(7); // [7] 
+Array.of(1, 2, 3); // [1, 2, 3]
+```
+
+##### 7.3、Array.fill()
+
+```
+// 用一个固定值填充一个数组中从起始索引到终止索引内的全部元素。不包括终止索引。(包含头不包含尾)
+arr.fill(value[, start[, end]]); // value为替换后的值，start为开始索引，end为终止索引。
+[1, 2, 3].fill(4);               // [4, 4, 4]
+[1, 2, 3].fill(4, 1);            // [1, 4, 4]
+[1, 2, 3].fill(4, 1, 2);         // [1, 4, 3]
+[1, 2, 3].fill(4, 1, 1);         // [1, 2, 3]
+[1, 2, 3].fill(4, 3, 3);         // [1, 2, 3]
+[1, 2, 3].fill(4, -3, -2);       // [4, 2, 3]
+[1, 2, 3].fill(4, NaN, NaN);     // [1, 2, 3]
+[1, 2, 3].fill(4, 3, 5);         // [1, 2, 3]
+```
+
+### 8、对象操作
+##### 8.1、属性简写
+
+```
+// 如果对象中属性值和变量名相同，并且属性的值就是变量表示值，则简写。
+let name = 'lemon';
+let age = 20;
+let obj = {name, age }; // 相当于 let obj = {'name': name, 'age': age };
+```
+
+##### 8.2、super
+
+```
+// 通过super可以调用prototype上的属性或方法。
+let lemon = {'name': 'lemon' };
+let mt = {
     __proto__: lemon,
     name: 'mt',
     getName() {
-      return super.name;
+        return super.name;
     }
-  }
-  console.log(mt.getName()); // lemon
-8.3、Object.is
-  对比两个值是否相等
-8.4、对象拷贝
-  浅拷贝
-  let lemon = {'wrap': {'name': 'lemon' } };
-  let mt = {'name': 'mt' };
-  let obj = {};
-  a、Object.assign
-  Object.assign(obj, lemon, mt);
-  console.log(obj); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
-  b、延展拷贝
-  obj = {...lemon, ...mt };
-  console.log(obj); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
-  
-  深拷贝
-  在浅拷贝的基础上使用JSON.parse和JSON.stringify
-  let obj2 = JSON.parse(JSON.stringify(obj));
-  console.log(obj2); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
+}
+console.log(mt.getName()); // lemon
+```
 
-9、类操作
-  es6可以使用关键字class定义一个类
-  class Person {
+##### 8.3、Object.is
+  
+```
+// 对比两个值是否相等
+```
+
+##### 8.4、对象拷贝
+
+```
+// 浅拷贝
+let lemon = {'wrap': {'name': 'lemon' } };
+let mt = {'name': 'mt' };
+let obj = {};
+// a、Object.assign
+Object.assign(obj, lemon, mt);
+console.log(obj); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
+// b、延展拷贝
+obj = {...lemon, ...mt };
+console.log(obj); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
+
+// 深拷贝
+// 在浅拷贝的基础上使用JSON.parse和JSON.stringify
+let obj2 = JSON.parse(JSON.stringify(obj));
+console.log(obj2); // {'wrap': {'name': 'lemon' } 'name': 'mt' }
+```
+
+### 9、类操作
+
+```
+// es6可以使用关键字class定义一个类
+class Person {
     // 在constructor里面定义这个类的属性
     constructor(name) {
-      this.name = name;
+        this.name = name;
     }
     // 以下是类的方法
     getName() {
-      return this.name;
+        return this.name;
     }
-  }
-  let lemon = new Person('lemon', 20);
-  let name = lemon.getName();
-  console.log(name); // lemon
-  类继承
-  class Student extends Person {
+}
+let lemon = new Person('lemon', 20);
+let name = lemon.getName();
+console.log(name); // lemon
+
+// 类继承
+class Student extends Person {
     constructor(name, age) {
-      super(name);
-      this.age = age;
+        super(name);
+        this.age = age;
     }
     getAge() {
-      return this.age;
+        return this.age;
     }
-  }
-  let mt = new Student('mt', 18);
-  console.log(mt.getName()); // mt
-  console.log(mt.getAge()); // 18
+}
+let mt = new Student('mt', 18);
+console.log(mt.getName()); // mt
+console.log(mt.getAge()); // 18
+```
 
-10、集合操作
-10.1、Set
-  一个Set是一堆东西的集合，类似数组，与数组不同的地方是，Set里面不可以有重复的元素。
-  // 创建Set
-  let set = new Set(['lemon', 'mt', 'dazhuti']);
-  // 属性
-  console.log(set.size); // 3
-  // 方法
-  set.add('damowang');
-  set.delete('dazhuti');
-  set.has('mt');
-  set.clear();
-  // 遍历（可使用for...of或者forEach）
-  for (let item of set) {
+### 10、集合操作
+##### 10.1、Set
+
+```
+// 一个Set是一堆东西的集合，类似数组，与数组不同的地方是，Set里面不可以有重复的元素。
+// 创建Set
+let set = new Set(['lemon', 'mt', 'dazhuti']);
+// 属性
+console.log(set.size); // 3
+// 方法
+set.add('damowang');
+set.delete('dazhuti');
+set.has('mt');
+set.clear();
+// 遍历（可使用for...of或者forEach）
+for (let item of set) {
     console.log(item);
-  }
-  set.forEach((item) => {
+}
+set.forEach((item) => {
     console.log(item);
-  });
-10.2、Map
-  相比json格式使用键值对形式“键：值”，Map使用“值：值”的形式，它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）
-都可以当作键。
-  // 创建Map
-  let map = new Map([
+});
+```
+
+### 10.2、Map
+
+```
+相比json格式使用键值对形式“键：值”，Map使用“值：值”的形式，它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
+```
+
+```
+// 创建Map
+let map = new Map([
     ['lemon', {'name': 'lemon' }],
     ['mt', {'name': 'mt' }]
-  ]);
-  // 属性
-  console.log(map.size); // 2
-  // 方法
-  map.set('dazhuti', {'name': 'dazhuti' });
-  map.get('lemon');
-  map.delete('mt');
-  map.has('dazhuti');
-  map.clear();
-  // 遍历（可使用for...of或者forEach）
-  for (let [key, value] of map) {
+]);
+// 属性
+console.log(map.size); // 2
+// 方法
+map.set('dazhuti', {'name': 'dazhuti' });
+map.get('lemon');
+map.delete('mt');
+map.has('dazhuti');
+map.clear();
+// 遍历（可使用for...of或者forEach）
+for (let [key, value] of map) {
     console.log(key, value);
-  }
-  map.forEach((item) => {
+}
+map.forEach((item) => {
     console.log(item)
-  });
+});
+```
 
-11、Generator
-  Generator函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同。顾名思义，它是一个生成器，也是一个状态机，内部拥有值及相关的状态，
-生成器返回一个迭代器iterator对象，我们可以通过这个迭代器，手动遍历相关的值、状态，保证正确的执行顺序。
-  Generator的声明方式类似一般的函数声明，只是多了一个*号，并且在函数内一般有yield关键字。
-    function* showName() {
-      yield 'lemon';
-      yield 'mt';
-      return 'dazhuti';
-    }
-    let showNameFn = showName();
-    showNameFn.next(); // {value: "lemon", done: false}
-    showNameFn.next(); // {value: "mt", done: false}
-    showNameFn.next(); // {value: "dazhuti", done: true}
-    showNameFn.next(); // {value: undefined, done: true}
+### 11、Generator
+
+```
+Generator函数是ES6提供的一种异步编程解决方案，语法行为与传统函数完全不同。顾名思义，它是一个生成器，也是一个状态机，内部拥有值及相关的状态，生成器返回一个迭代器iterator对象，我们可以通过这个迭代器，手动遍历相关的值、状态，保证正确的执行顺序。
+Generator的声明方式类似一般的函数声明，只是多了一个*号，并且在函数内一般有yield关键字。
+```
+
+
+```
+function* showName() {
+    yield 'lemon';
+    yield 'mt';
+    return 'dazhuti';
+}
+let showNameFn = showName();
+showNameFn.next(); // {value: "lemon", done: false}
+showNameFn.next(); // {value: "mt", done: false}
+showNameFn.next(); // {value: "dazhuti", done: true}
+showNameFn.next(); // {value: undefined, done: true}
+```
